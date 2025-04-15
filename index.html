@@ -1,7 +1,73 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-gray-100 to-white p-8">
+      <section className="max-w-4xl mx-auto text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl font-bold mb-4"
+        >
+          Ciao, sono Tommaso Lucchi
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-xl text-gray-700"
+        >
+          Sono un [aggiungi qui la tua professione o passione]. Benvenuto nel mio sito personale!
+        </motion.p>
+      </section>
+
+      <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="transition-transform duration-300"
+        >
+          <Card className="rounded-2xl shadow-lg">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-semibold mb-2">Chi sono</h2>
+              <p className="text-gray-600">
+                Inserisci qui una breve biografia: la tua formazione, le esperienze principali, ciò che ti appassiona.
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="transition-transform duration-300"
+        >
+          <Card className="rounded-2xl shadow-lg">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-semibold mb-2">Progetti</h2>
+              <p className="text-gray-600">
+                Descrivi i tuoi progetti più importanti o interessanti. Può essere utile includere link o immagini.
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </section>
+
+      <section className="mt-16 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold mb-4"
+        >
+          Contattami
+        </motion.h2>
+        <p className="text-gray-600 mb-6">Inserisci qui i tuoi contatti: email, social, ecc.</p>
+        <Button className="text-lg px-6 py-3 rounded-full">Scrivimi</Button>
+      </section>
+    </main>
+  );
+}
