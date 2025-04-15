@@ -1,73 +1,132 @@
+// File: app/page.tsx
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-100 to-white p-8">
-      <section className="max-w-4xl mx-auto text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-bold mb-4"
-        >
-          Ciao, sono Tommaso Lucchi
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-xl text-gray-700"
-        >
-          Sono un [aggiungi qui la tua professione o passione]. Benvenuto nel mio sito personale!
-        </motion.p>
-      </section>
+    <main className="min-h-screen font-sans bg-gradient-to-br from-blue-100 via-white to-pink-100 text-gray-800">
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
+    </main>
+  );
+}
 
-      <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="transition-transform duration-300"
-        >
-          <Card className="rounded-2xl shadow-lg">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-semibold mb-2">Chi sono</h2>
-              <p className="text-gray-600">
-                Inserisci qui una breve biografia: la tua formazione, le esperienze principali, ciò che ti appassiona.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
+// File: components/Hero.tsx
+import { motion } from "framer-motion";
 
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="transition-transform duration-300"
-        >
-          <Card className="rounded-2xl shadow-lg">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-semibold mb-2">Progetti</h2>
-              <p className="text-gray-600">
-                Descrivi i tuoi progetti più importanti o interessanti. Può essere utile includere link o immagini.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </section>
+export default function Hero() {
+  return (
+    <section className="text-center py-20 px-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+      <motion.h1
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-5xl md:text-6xl font-bold mb-4"
+      >
+        Ciao, sono Tommaso Lucchi
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="text-xl md:text-2xl"
+      >
+        Creativo. Curioso. Sempre in evoluzione.
+      </motion.p>
+    </section>
+  );
+}
 
-      <section className="mt-16 text-center">
+// File: components/About.tsx
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+
+export default function About() {
+  return (
+    <section className="py-16 px-4 max-w-5xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Card className="bg-white rounded-2xl shadow-xl">
+          <CardContent className="p-8">
+            <h2 className="text-3xl font-bold mb-4">Chi sono</h2>
+            <p className="text-gray-700 text-lg">
+              Mi chiamo Tommaso Lucchi e sono un [ruolo] con una passione per [tema].
+              Amo lavorare su progetti innovativi e contribuire con idee fresche e soluzioni creative.
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </section>
+  );
+}
+
+// File: components/Projects.tsx
+import { motion } from "framer-motion";
+
+const projects = [
+  {
+    title: "Progetto Alpha",
+    description: "Un progetto innovativo che risolve un problema reale.",
+  },
+  {
+    title: "Beta Creative",
+    description: "Un mix tra design e tecnologia per esperienze coinvolgenti.",
+  },
+];
+
+export default function Projects() {
+  return (
+    <section className="bg-blue-50 py-16 px-4">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-center text-blue-800">Progetti</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-xl shadow-md"
+            >
+              <h3 className="text-xl font-semibold text-blue-700 mb-2">{project.title}</h3>
+              <p className="text-gray-600">{project.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// File: components/Contact.tsx
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+export default function Contact() {
+  return (
+    <section className="py-16 px-4 bg-white">
+      <div className="max-w-3xl mx-auto text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="text-3xl font-bold mb-4"
         >
           Contattami
         </motion.h2>
-        <p className="text-gray-600 mb-6">Inserisci qui i tuoi contatti: email, social, ecc.</p>
-        <Button className="text-lg px-6 py-3 rounded-full">Scrivimi</Button>
-      </section>
-    </main>
+        <p className="text-gray-700 mb-6">
+          Sentiti libero di scrivermi per collaborazioni, domande o semplicemente per fare due chiacchiere!
+        </p>
+        <Button className="text-lg px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white">
+          Scrivimi
+        </Button>
+      </div>
+    </section>
   );
 }
